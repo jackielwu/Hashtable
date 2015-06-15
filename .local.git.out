@@ -1,0 +1,39 @@
+[master (root-commit) c4292e6] 10 of 100
+ Committer: CS251 Account <cs251@data.cs.purdue.edu>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 25 files changed, 2712 insertions(+)
+ create mode 100644 .local.git.out
+ create mode 100644 HashTableTemplate.h
+ create mode 100644 HashTableTemplateTest.cc
+ create mode 100644 HashTableVoid.cc
+ create mode 100644 HashTableVoid.h
+ create mode 100644 HashTableVoidTest.cc
+ create mode 100644 ListTemplate.h
+ create mode 100644 ListTemplateTest.cc
+ create mode 100644 Makefile
+ create mode 100644 MyString.cc
+ create mode 100644 MyString.h
+ create mode 100644 TestMyString.cc
+ create mode 100644 TestMyString.s
+ create mode 100644 greetings.txt
+ create mode 100644 mygrep.cc
+ create mode 100644 out1
+ create mode 100644 out2
+ create mode 100644 results.txt
+ create mode 100755 testWcTemplate
+ create mode 100755 testWcVoid
+ create mode 100755 testall
+ create mode 100644 total.out
+ create mode 100644 wcTemplate.cc
+ create mode 100644 wcVoid.cc
+ create mode 100755 wcVoidExample
