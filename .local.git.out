@@ -37,3 +37,22 @@ After doing this, you may fix the identity used for this commit with:
  create mode 100644 wcTemplate.cc
  create mode 100644 wcVoid.cc
  create mode 100755 wcVoidExample
+[master 19f4497] 13 of 100
+ Committer: CS251 Account <cs251@data.cs.purdue.edu>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 8 files changed, 42 insertions(+), 3 deletions(-)
+ create mode 100755 HashTableTemplateTest
+ create mode 100755 HashTableVoidTest
+ create mode 100755 TestMyString
+ create mode 100755 wcTemplate
+ create mode 100755 wcVoid
