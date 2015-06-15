@@ -86,3 +86,24 @@ After doing this, you may fix the identity used for this commit with:
     git commit --amend --reset-author
 
  2 files changed, 17 insertions(+), 1 deletion(-)
+[master 8206636] 10 of 100
+ Committer: CS251 Account <cs251@lore.cs.purdue.edu>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 10 files changed, 22 insertions(+), 638 deletions(-)
+ delete mode 100755 HashTableTemplateTest
+ delete mode 100755 HashTableVoidTest
+ delete mode 100755 TestMyString
+ rewrite out2 (100%)
+ delete mode 100755 wcTemplate
+ delete mode 100755 wcVoid
