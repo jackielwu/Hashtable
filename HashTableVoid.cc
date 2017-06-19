@@ -19,6 +19,7 @@ int HashTableVoid::hash(const char * key)
 // Constructor for hash table. Initializes hash table
 HashTableVoid::HashTableVoid()
 {
+	_buckets = new HashTableVoidEntry*[TableSize];
   for (int i = 0; i < TableSize; i++) {
 		_buckets[i] = NULL;
 	}    
@@ -70,7 +71,7 @@ bool HashTableVoid::removeElement(const char * key)
   while (e != NULL) {
     if(strcmp(key,e->_key)==0) {
 			p->_next = e->_next;	
-			//delete(e);  	
+			delete(e);  	
 	  	return true;
 		}
 		p = e;
@@ -91,7 +92,7 @@ HashTableVoidIterator::HashTableVoidIterator(HashTableVoid * hashTable)
 // Returns true if there is a next element. Stores data value in data.
 bool HashTableVoidIterator::next(const char * & key, void * & data)
 {
-	for(; _currentBucket < _hashTable->TableSize; _currentBucket++) {
+	for(_currentBucket = 0; _currentBucket < _hashTable->TableSize; _currentBucket++) {
 		_currentEntry = _hashTable->_buckets[_currentBucket];		
 		while (_currentEntry != NULL) {
 			if(strcmp(_currentEntry->_key,key) == 0) {
