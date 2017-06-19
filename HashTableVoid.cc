@@ -64,7 +64,18 @@ bool HashTableVoid::find( const char * key, void ** data)
 // Removes an element in the hash table. Return false if key does not exist.
 bool HashTableVoid::removeElement(const char * key)
 {
-  // Add implementation here
+  int h = hash(key);
+  HashTableVoidEntry *e = _buckets[h];
+	HashTableVoidEntry *p = e;
+  while (e != NULL) {
+    if(strcmp(key,e->_key)==0) {
+			p->_next = e->_next;	
+			delete(e);  	
+	  	return true;
+		}
+		p = e;
+		e = e->_next;
+	}
   return false;
 }
 

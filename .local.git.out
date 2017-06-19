@@ -153,3 +153,5 @@ After doing this, you may fix the identity used for this commit with:
  4 files changed, 18 insertions(+), 4 deletions(-)
 [master b6b54d2] 3 of 100
  3 files changed, 39 insertions(+), 6 deletions(-)
+[master 1cfec07] 3 of 100
+ 3 files changed, 12 insertions(+), 2 deletions(-)
