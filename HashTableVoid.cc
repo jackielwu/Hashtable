@@ -70,7 +70,7 @@ bool HashTableVoid::removeElement(const char * key)
   while (e != NULL) {
     if(strcmp(key,e->_key)==0) {
 			p->_next = e->_next;	
-			delete(e);  	
+			//delete(e);  	
 	  	return true;
 		}
 		p = e;
