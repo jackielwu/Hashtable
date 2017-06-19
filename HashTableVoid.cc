@@ -54,7 +54,7 @@ bool HashTableVoid::find( const char * key, void ** data)
   HashTableVoidEntry *e = _buckets[h];
   while (e != NULL) {
     if(strcmp(key,e->_key)==0) {
-	  	e->_data = data;
+	  	*data = e->_data;
 	  	return true;
 		}
 		e = e->_next;
@@ -67,14 +67,12 @@ bool HashTableVoid::removeElement(const char * key)
 {
   int h = hash(key);
   HashTableVoidEntry *e = _buckets[h];
-	HashTableVoidEntry *p = e;
   while (e != NULL) {
     if(strcmp(key,e->_key)==0) {
-			p->_next = e->_next;	
+			_buckets[h] = e->_next;	
 			delete(e);  	
 	  	return true;
 		}
-		p = e;
 		e = e->_next;
 	}
   return false;
@@ -92,7 +90,7 @@ HashTableVoidIterator::HashTableVoidIterator(HashTableVoid * hashTable)
 // Returns true if there is a next element. Stores data value in data.
 bool HashTableVoidIterator::next(const char * & key, void * & data)
 {
-	for(_currentBucket = 0; _currentBucket < _hashTable->TableSize; _currentBucket++) {
+	for(; _currentBucket < _hashTable->TableSize; _currentBucket++) {
 		_currentEntry = _hashTable->_buckets[_currentBucket];		
 		while (_currentEntry != NULL) {
 			if(strcmp(_currentEntry->_key,key) == 0) {

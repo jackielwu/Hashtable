@@ -40,7 +40,7 @@ TestMyString: TestMyString.cc MyString.cc
 HashTableTemplateTest: HashTableTemplate.h HashTableTemplateTest.cc
 	$(CXX) -o HashTableTemplateTest HashTableTemplateTest.cc
 
-HashTableVoidTest: HashTableVoid.h HashTableVoidTest.cc
+HashTableVoidTest: HashTableVoid.h HashTableVoidTest.cc HashTableVoid.cc
 	$(CXX) -o HashTableVoidTest HashTableVoid.cc HashTableVoidTest.cc
 
 wcVoid: wcVoid.cc HashTableVoid.h HashTableVoid.cc
