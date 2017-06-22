@@ -10,7 +10,8 @@ int HashTableVoid::hash(const char * key)
 {
   int sum = 0;
 	int len = strlen(key);
-	for(int i = 0; i < len; i++) {
+	for(int i = 0; i < len; i++)
+	{
 		sum += (i+1)*key[i];
 	}
   return sum % TableSize;
@@ -20,7 +21,8 @@ int HashTableVoid::hash(const char * key)
 HashTableVoid::HashTableVoid()
 {
 	_buckets = new HashTableVoidEntry*[TableSize];
-  for (int i = 0; i < TableSize; i++) {
+  for (int i = 0; i < TableSize; i++)
+	{
 		_buckets[i] = NULL;
 	}    
 }
@@ -31,8 +33,10 @@ bool HashTableVoid::insertItem( const char * key, void * data)
 {
   int h = hash(key);
   HashTableVoidEntry *e = _buckets[h];
-  while (e != NULL) {
-    if(strcmp(key,e->_key)==0) {
+  while (e != NULL)
+	{
+    if(strcmp(key,e->_key)==0)
+		{
 	  	e->_data = data;
 	  	return true;
 		}
@@ -52,8 +56,10 @@ bool HashTableVoid::find( const char * key, void ** data)
 {
   int h = hash(key);
   HashTableVoidEntry *e = _buckets[h];
-  while (e != NULL) {
-    if(strcmp(key,e->_key)==0) {
+  while (e != NULL)
+	{
+    if(strcmp(key,e->_key)==0)
+		{
 	  	*data = e->_data;
 	  	return true;
 		}
@@ -67,8 +73,10 @@ bool HashTableVoid::removeElement(const char * key)
 {
   int h = hash(key);
   HashTableVoidEntry *e = _buckets[h];
-  while (e != NULL) {
-    if(strcmp(key,e->_key)==0) {
+  while (e != NULL)
+	{
+    if(strcmp(key,e->_key)==0)
+		{
 			_buckets[h] = e->_next;	
 			delete(e);  	
 	  	return true;
@@ -84,22 +92,17 @@ HashTableVoidIterator::HashTableVoidIterator(HashTableVoid * hashTable)
 	_hashTable = hashTable;
   _currentBucket = 0;
 	_currentEntry = _hashTable->_buckets[_currentBucket];
-
 }
 
 // Returns true if there is a next element. Stores data value in data.
 bool HashTableVoidIterator::next(const char * & key, void * & data)
 {
-	for(; _currentBucket < _hashTable->TableSize; _currentBucket++) {
-		_currentEntry = _hashTable->_buckets[_currentBucket];		
-		while (_currentEntry != NULL) {
-			if(strcmp(_currentEntry->_key,key) == 0) {
-				data = _currentEntry->_data;
-				return true;
-			}
-			_currentEntry = _currentEntry->_next;
-		}
+	if(_currentEntry == NULL)
+	{
+		return false;
 	}
-  return false;
+	key = _currentEntry->_key;
+	data = _currentEntry->_data;
+	return true;
 }
 

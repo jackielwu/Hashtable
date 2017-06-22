@@ -14,8 +14,13 @@
 int
 MyString::slength(const char *s) const
 {
-  // Add implementation here
-  return 0;
+	int l = 0;
+	while(s[l] != '\0')
+	{
+		s[l];
+		l++;
+	}
+  return l;
 }
 
 // Initialize _s. Allocate memory for _s and copy s into _s
@@ -24,8 +29,15 @@ MyString::initialize(const char * s)
 {
   // Add implementation here
   // Allocate memory for _s.
-
+	_s = new char[slength(s)+1];
   // Copy s into _s
+	int i = 0;
+	while(s[i] != '\0')
+	{
+		_s[i] = s[i];
+		i++;
+	}
+	_s[i+1] = '\0';
 }
 
 // Create a MyString from a C string
@@ -142,7 +154,8 @@ const char *
 MyString::cStr()
 {
   // Add implementation here
-  return _s;
+	const char* s = _s;
+  return s;
 }
 
 // Get string length of this string.
