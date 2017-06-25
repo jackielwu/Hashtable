@@ -83,15 +83,28 @@ MyString
 MyString::substring(int i, int n)
 {
   // Add implementation here
-
   // Make sure that i is not beyond the end of string
-
+	if(i > length())
+	{
+		return MyString();
+	}
   // Allocate memory for substring
-
+	char* s = new char[n+1];
   // Copy characters of substring
-  MyString sub;
-
+	int max = i+n;
+	int j;
+	for(j=0;j<n;j++)
+	{
+		if(_s[j+i] == 0)
+		{
+			break;
+		}
+		s[j] = _s[j+i];
+	}
+	s[j]= 0;
   // Return substring
+  MyString sub(s);
+  delete [] s;
   return sub;
 }
 
@@ -102,9 +115,15 @@ MyString::remove(int i, int n)
   // Add implementation here
 
   // If i is beyond the end of string return
-
+	if(i>length())
+	{
+		return;
+	}
   // If i+n is beyond the end trunc string
-
+	if(i+n>length())
+	{
+		
+	}
   // Remove characters
 }
 
@@ -113,7 +132,18 @@ bool
 MyString::operator == (const MyString & s)
 {
   // Add implementation here
-  return false;
+  if(length() != s.length())
+  {
+  	return false;
+  }
+  for(int i =0;i< length();i++)
+  {
+  	if(_s[i] != s._s[i])
+	{
+		return false;
+	}
+  }
+  return true;
 }
 
 
@@ -122,6 +152,17 @@ bool
 MyString::operator != (const MyString &s)
 {
   // Add implementation here
+  if(length() == s.length())
+  {
+  	return true;
+  }
+  for(int i=0;i<length();i++)
+  {
+  	if(_s[i] == s._s[i])
+	{
+		return true;
+	}
+  }
   return false;
 }
 
@@ -130,7 +171,24 @@ bool
 MyString::operator <= (const MyString &s)
 {
   // Add implementation here
-  return false;
+  if(this==&s)
+  {
+    return true;
+  }
+  int i =0;
+  while(_s[i] != 0)
+  {
+    if(s._s[i] ==0)
+    {
+      return false;
+    }
+    if(_s[i]>s._s[i])
+    {
+      return false;
+    }
+    i++;
+  }
+  return true;
 }
 
 // Return true if string "this" is greater than s
@@ -138,6 +196,26 @@ bool
 MyString::operator > (const MyString &s)
 {
   // Add implementation here
+  int i=0;
+  while(_s[i] != 0 && s._s[i] != 0)
+  {
+  	if(_s[i]<s._s[i])
+  	{
+      printf("<\n");
+		  return false;
+  	}
+    if(_s[i]>s._s[i])
+    {
+      printf(">\n");
+      return true;
+    }
+  	i++;
+  }
+  printf("end\n");
+  if(s._s[i] == 0)
+  {
+    return true;
+  }
   return false;
 }
 
@@ -146,7 +224,11 @@ char
 MyString::operator [] (int i)
 {
   // Add implementation here
-  return ' ';
+  if(i>length())
+  {
+  	return '\0';
+  }
+  return _s[i];
 }
 
 // Return C representation of string
@@ -179,12 +261,21 @@ MyString operator + (const MyString &s1, const MyString &s2)
   // Add implementation here
 
   // Allocate memory for the concatenated string
-
+  char *s = new char[s1.length()+s2.length()];
   // Add s1
-
+  int j=0;
+  for(int i=0;i<s1.length();i++)
+  {
+    s[j++] = s1._s[i];
+  }
   // Add s2
-
-  MyString s;
-  return s;
+  for(int i=0;i<s2.length();i++)
+  {
+    s[j++] = s2._s[i];
+  }
+  s[j] = 0;
+  MyString s3(s);
+  delete [] s;
+  return s3;
 }
 

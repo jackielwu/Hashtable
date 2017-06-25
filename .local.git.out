@@ -169,3 +169,5 @@ After doing this, you may fix the identity used for this commit with:
  6 files changed, 183 insertions(+), 55 deletions(-)
  create mode 100644 TestMyStringMemory.cc
  rewrite results.txt (100%)
+[master cd4adbd] 38 of 115
+ 6 files changed, 49 insertions(+), 29 deletions(-)
