@@ -12,8 +12,8 @@
 ./HashTableVoidTest test1                   : 4 of 4
 ./HashTableVoidTest test2                   : 4 of 4
 ./HashTableVoidTest test3                   : 4 of 4
-./HashTableVoidTest test4                   : 0 of 5
-./HashTableVoidTest test5                   : 0 of 5
+./HashTableVoidTest test4                   : 5 of 5
+./HashTableVoidTest test5                   : 5 of 5
 ./HashTableVoidTest test6                   : 5 of 5
 ./HashTableTemplateTest test1               : 5 of 5
 ./HashTableTemplateTest test2               : 5 of 5
@@ -21,7 +21,7 @@
 ./HashTableTemplateTest test4               : 0 of 5
 ./HashTableTemplateTest test5               : 0 of 5
 ./HashTableTemplateTest test6               : 0 of 5
-./testWcVoid                                : 0 of 5
+./testWcVoid                                : 5 of 5
 ./testWcTemplate                            : 0 of 5
 ./checkMemory.sh TestMyStringMemory test1   : 1 of 1
 ./checkMemory.sh TestMyStringMemory test2   : 1 of 1

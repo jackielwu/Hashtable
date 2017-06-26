@@ -112,8 +112,7 @@ bool HashTableVoidIterator::next(const char * & key, void * & data)
 {
   while(_currentEntry == NULL && _currentBucket < 2039)
   {
-      _currentBucket++;
-      _currentEntry = _hashTable->_buckets[_currentBucket];
+      _currentEntry = _hashTable->_buckets[_currentBucket++];
   }
   if(_currentEntry == NULL)
   {
