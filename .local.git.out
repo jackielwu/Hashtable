@@ -220,3 +220,7 @@ After doing this, you may fix the identity used for this commit with:
 [master 9740c7f] 110 of 115
  5 files changed, 663 insertions(+), 1 deletion(-)
  rewrite wcTemplate (96%)
+[master a2d21cd] 110 of 115
+ 6 files changed, 44 insertions(+), 31 deletions(-)
+ rewrite HashTableTemplateTest (71%)
+ rewrite wcTemplate (62%)

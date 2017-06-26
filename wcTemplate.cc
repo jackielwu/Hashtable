@@ -65,13 +65,13 @@ int main(int argc, char **argv) {
 
     // Add word to table
     WordCount * wc;
-    bool found = table.find(word, (WordCount**) &wc);
+    bool found = table.find(word, &wc);
     if (!found) {
       // Add to table
       wc = new WordCount();
       wc->word = strdup(word);
       wc->count = 0;
-      table.insertItem(word, (WordCount*)wc);
+      table.insertItem(word, wc);
     }
     wc->count++;
     
@@ -83,10 +83,10 @@ int main(int argc, char **argv) {
   printf("-----------------------\n", argv[1]);
   HashTableTemplateIterator<WordCount *> iterator(&table);
   WordCount * wc;
-  WordCount * wcp;
+  //WordCount * wcp;
   const char * key;
-  while (iterator.next(key, wcp)) {
-    wc = (WordCount *)wcp;
+  while (iterator.next(key, wc)) {
+    //wc = (WordCount *)wcp;
     printf("%-20s %d\n", wc->word, wc->count);
   }
   
