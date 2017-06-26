@@ -37,7 +37,7 @@ MyString::initialize(const char * s)
 		_s[i] = s[i];
 		i++;
 	}
-	_s[i+1] = '\0';
+	_s[i] = '\0';
 }
 
 // Create a MyString from a C string
