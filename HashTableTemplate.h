@@ -31,7 +31,7 @@ class HashTableTemplate {
   
  public:
   HashTableTemplate();
-  
+  ~HashTableTemplate();
   // Add a record to the hash table. Returns true if key already exists.
   // Substitute content if key already exists.
   bool insertItem( const char * key, Data data);
@@ -70,6 +70,16 @@ HashTableTemplate<Data>::HashTableTemplate()
     _buckets[i] = NULL;
   }
 }
+template <typename Data>
+HashTableTemplate<Data>::~HashTableTemplate()
+{
+  for(int i=0;i<TableSize;i++)
+  {
+    if(_buckets[i] = NULL)
+      delete _buckets[i];
+  }
+  delete [] _buckets;
+}
 
 template <typename Data>
 bool HashTableTemplate<Data>::insertItem( const char * key, Data data)
@@ -90,6 +100,8 @@ bool HashTableTemplate<Data>::insertItem( const char * key, Data data)
   e->_key = strdup(key);
   e->_data = data;
   _buckets[h] = e;
+  delete e->_key;
+  delete e;
   return false;
 }
 
