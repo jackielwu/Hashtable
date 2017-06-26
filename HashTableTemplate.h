@@ -51,13 +51,13 @@ class HashTableTemplate {
 template <typename Data>
 int HashTableTemplate<Data>::hash(const char * key)
 {
-  int h = 0;
-  const char * p = key;
-  while (*p) {
-    h += *p;
-    p++;
-  }
-  return h % TableSize;
+  int sum = 0;
+	int len = strlen(key);
+	for(int i = 0; i < len; i++)
+	{
+		sum += (i+1)*key[i];
+	}
+  return sum % TableSize;
 }
 
 template <typename Data>
