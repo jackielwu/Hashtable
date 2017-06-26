@@ -173,14 +173,13 @@ template <typename Data>
 bool HashTableTemplateIterator<Data>::next(const char * & key, Data & data)
 {
   // Add implementation here
-  while(_currentEntry == NULL)
+  while(_currentEntry == NULL && _currentBucket <2039)
   {
-    if(_currentBucket == _hashTable->TableSize)
-    {
-      return false;
-    }
-    _currentBucket++;
-    _currentEntry = _hashTable->_buckets[_currentBucket];
+    _currentEntry = _hashTable->_buckets[_currentBucket++];
+  }
+  if(_currentEntry == NULL)
+  {
+    return false;
   }
   key = _currentEntry->_key;
   data = _currentEntry->_data;
