@@ -56,8 +56,7 @@ bool HashTableVoid::insertItem( const char * key, void * data)
 	e->_data = data;
 	e->_next = _buckets[h];
 	_buckets[h] = e;
-  delete e->_key;
-  free(e->_data);
+  free((char*)e->_key);
   delete e;
   return false;
 }
