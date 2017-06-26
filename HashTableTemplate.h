@@ -64,7 +64,7 @@ template <typename Data>
 HashTableTemplate<Data>::HashTableTemplate()
 {
   // Add implementation here
-  _buckets = new HashTableTemplateEntry*[TableSize];
+  _buckets = new HashTableTemplateEntry<Data>*[TableSize];
   for(int i=0;i<TableSize;i++)
   {
     _buckets[i] = NULL;
@@ -75,6 +75,21 @@ template <typename Data>
 bool HashTableTemplate<Data>::insertItem( const char * key, Data data)
 {
   // Add implementation here
+  int h = hash(key);
+  HashTableTemplateEntry<Data> *e = _buckets[h];
+  while (e != NULL)
+  {
+    if(strcmp(key,e->_key)==0)
+    {
+      e->_data = data;
+      return true;
+    }
+    e = e->_next;
+  }
+  e = new HashTableTemplateEntry<Data>();
+  e->_key = strdup(key);
+  e->_data = data;
+  _buckets[h] = e;
   return false;
 }
 
@@ -82,6 +97,17 @@ template <typename Data>
 bool HashTableTemplate<Data>::find( const char * key, Data * data)
 {
   // Add implementation here
+  int h = hash(key);
+  HashTableTemplateEntry<Data> *e = _buckets[h];
+  while(e != NULL)
+  {
+    if(strcmp(key,e->_key)==0)
+    {
+      *data = e->_data;
+      return true;
+    }
+    e = e->_next;
+  }
   return false;
 }
 
@@ -95,6 +121,18 @@ template <typename Data>
 bool HashTableTemplate<Data>::removeElement(const char * key)
 {
   // Add implementation here
+  int h = hash(key);
+  HashTableTemplateEntry<Data> *e = _buckets[h];
+  while(e != NULL)
+  {
+    if(strcmp(key,e->_key)==0)
+    {
+      _buckets[h] = e->_next;
+      delete(e);
+      return true;
+    }
+    e = e->_next;
+  }
   return false;
 }
 
@@ -112,11 +150,26 @@ template <typename Data>
 HashTableTemplateIterator<Data>::HashTableTemplateIterator(HashTableTemplate<Data> * hashTable)
 {
   // Add implementation here
+  _hashTable = hashTable;
+  _currentBucket = 0;
+  _currentEntry = _hashTable->_buckets[_currentBucket];
 }
 
 template <typename Data>
 bool HashTableTemplateIterator<Data>::next(const char * & key, Data & data)
 {
   // Add implementation here
-  return false;
+  while(_currentEntry == NULL)
+  {
+    if(_currentBucket == _hashTable->TableSize)
+    {
+      return false;
+    }
+    _currentBucket++;
+    _currentEntry = _hashTable->_buckets[_currentBucket];
+  }
+  key = _currentEntry->_key;
+  data = _currentEntry->_data;
+  _currentEntry = _currentEntry->_next;
+  return true;
 }
