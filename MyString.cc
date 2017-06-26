@@ -120,11 +120,40 @@ MyString::remove(int i, int n)
 		return;
 	}
   // If i+n is beyond the end trunc string
-	if(i+n>length())
+	if(i+n>=length())
 	{
-		
+    char *s = new char[i];
+		for(int j=0;j<i;j++)
+    {
+      s[j] = _s[j];
+    }
+    _s = s;
+    delete [] s;
 	}
+  else
+  {
   // Remove characters
+    int l = length() - n;
+    char *s = new char[l+1];
+    int y =i+n-1;
+    int x = i;
+    int j = 0;
+    i=0;
+    while(i<length())
+    {
+      if(i<x||i>y)
+      {
+        s[j++]=_s[i];
+      }
+      i++;
+    }
+    s[j] = 0;
+    for(i=0;i<l+1;i++)
+    {
+      _s[i]=s[i];
+    }
+    delete [] s;
+  }
 }
 
 // Return true if strings "this" and s are equal
