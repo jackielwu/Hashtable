@@ -102,6 +102,7 @@ bool HashTableTemplate<Data>::insertItem( const char * key, Data data)
   e = new HashTableTemplateEntry<Data>();
   e->_key = strdup(key);
   e->_data = data;
+	e->_next = _buckets[h];
   _buckets[h] = e;
   return false;
 }

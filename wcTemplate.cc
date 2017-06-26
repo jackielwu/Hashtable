@@ -70,6 +70,7 @@ int main(int argc, char **argv) {
       // Add to table
       wc = new WordCount();
       wc->word = strdup(word);
+			//if(!strcmp(wc->word, "creation")) printf("\n\n\ncreation\n\n\n");
       wc->count = 0;
       table.insertItem(word, wc);
     }
