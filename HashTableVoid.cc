@@ -26,6 +26,15 @@ HashTableVoid::HashTableVoid()
 		_buckets[i] = NULL;
 	}    
 }
+HashTableVoid::~HashTableVoid()
+{
+  for(int i=0;i<TableSize;i++)
+  {
+    if(_buckets[i] != NULL)
+      delete _buckets[i];
+  }
+  delete [] _buckets;
+}
 
 // Add a record to the hash table. Returns true if key already exists.
 // Substitute content if key already exists.
@@ -47,6 +56,9 @@ bool HashTableVoid::insertItem( const char * key, void * data)
 	e->_data = data;
 	e->_next = _buckets[h];
 	_buckets[h] = e;
+  delete e->_key;
+  free(e->_data);
+  delete e;
   return false;
 }
 
@@ -78,7 +90,9 @@ bool HashTableVoid::removeElement(const char * key)
     if(strcmp(key,e->_key)==0)
 		{
 			_buckets[h] = e->_next;	
-			delete e;  	
+			delete e->_key;
+      free(e->_data);
+      delete e;  	
 	  	return true;
 		}
 		e = e->_next;

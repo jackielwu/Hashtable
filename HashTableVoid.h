@@ -29,7 +29,7 @@ class HashTableVoid {
   
  public:
   HashTableVoid();
-  
+  ~HashTableVoid();
   // Add a record to the hash table. Returns true if key already exists.
   // Substitute content if key already exists.
   bool insertItem( const char * key, void * data);
