@@ -30,8 +30,8 @@ HashTableVoid::~HashTableVoid()
 {
   for(int i=0;i<TableSize;i++)
   {
-    if(_buckets[i] != NULL)
-      delete _buckets[i];
+    //if(_buckets[i] != NULL)
+      //delete _buckets[i];
   }
   delete [] _buckets;
 }
@@ -89,8 +89,6 @@ bool HashTableVoid::removeElement(const char * key)
     if(strcmp(key,e->_key)==0)
 		{
 			_buckets[h] = e->_next;	
-			delete e->_key;
-      free(e->_data);
       delete e;  	
 	  	return true;
 		}
