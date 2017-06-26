@@ -76,7 +76,10 @@ HashTableTemplate<Data>::~HashTableTemplate()
   for(int i=0;i<TableSize;i++)
   {
     if(_buckets[i] = NULL)
+    {
+      delete _buckets[i]->_key;
       delete _buckets[i];
+    }
   }
   delete [] _buckets;
 }
@@ -100,7 +103,7 @@ bool HashTableTemplate<Data>::insertItem( const char * key, Data data)
   e->_key = strdup(key);
   e->_data = data;
   _buckets[h] = e;
-  delete e->_key;
+  free((void*)e->_key);
   delete e;
   return false;
 }
@@ -125,6 +128,7 @@ bool HashTableTemplate<Data>::find( const char * key, Data * data)
 
 template <typename Data>
 Data HashTableTemplate<Data>::operator[] (const char * &key) {
+  int h = hash(key);
   Data d;
   return d;
 }
@@ -140,6 +144,7 @@ bool HashTableTemplate<Data>::removeElement(const char * key)
     if(strcmp(key,e->_key)==0)
     {
       _buckets[h] = e->_next;
+      delete e->_key;
       delete(e);
       return true;
     }
