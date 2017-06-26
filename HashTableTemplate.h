@@ -126,7 +126,18 @@ bool HashTableTemplate<Data>::find( const char * key, Data * data)
 
 template <typename Data>
 Data HashTableTemplate<Data>::operator[] (const char * &key) {
+  int h = hash(key);
+  HashTableTemplateEntry<Data> *e = _buckets[h];
   Data d;
+  while(e != NULL)
+  {
+    if(strcmp(key,e->_key)==0)
+    {
+      d = e->_data;
+      return d;
+    }
+    e = e->_next;
+  }
   return d;
 }
 
