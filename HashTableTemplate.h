@@ -75,7 +75,7 @@ HashTableTemplate<Data>::~HashTableTemplate()
 {
   for(int i=0;i<TableSize;i++)
   {
-    if(_buckets[i] = NULL)
+    if(_buckets[i] != NULL)
     {
       delete _buckets[i]->_key;
       delete _buckets[i];
