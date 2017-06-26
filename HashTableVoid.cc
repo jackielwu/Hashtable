@@ -30,8 +30,11 @@ HashTableVoid::~HashTableVoid()
 {
   for(int i=0;i<TableSize;i++)
   {
-    //if(_buckets[i] != NULL)
-      //delete _buckets[i];
+    if(_buckets[i] != NULL)
+    {
+      delete _buckets[i]->_key;
+      delete _buckets[i];
+    }
   }
   delete [] _buckets;
 }
@@ -56,8 +59,6 @@ bool HashTableVoid::insertItem( const char * key, void * data)
 	e->_data = data;
 	e->_next = _buckets[h];
 	_buckets[h] = e;
-  free((char*)e->_key);
-  delete e;
   return false;
 }
 
@@ -89,6 +90,7 @@ bool HashTableVoid::removeElement(const char * key)
     if(strcmp(key,e->_key)==0)
 		{
 			_buckets[h] = e->_next;	
+      delete e->_key;
       delete e;  	
 	  	return true;
 		}
@@ -108,14 +110,14 @@ HashTableVoidIterator::HashTableVoidIterator(HashTableVoid * hashTable)
 // Returns true if there is a next element. Stores data value in data.
 bool HashTableVoidIterator::next(const char * & key, void * & data)
 {
-  while(_currentEntry == NULL)
+  while(_currentEntry == NULL && _currentBucket == _hashTable->TableSize)
   {
-    if(_currentBucket == _hashTable->TableSize)
+    if(_currentEntry == NULL)
     {
       return false;
     }
-    _currentBucket++;
-    _currentEntry = _hashTable->_buckets[_currentBucket];
+      _currentBucket++;
+      _currentEntry = _hashTable->_buckets[_currentBucket];
   }
   key = _currentEntry->_key;
   data = _currentEntry->_data;
