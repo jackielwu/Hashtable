@@ -64,6 +64,11 @@ template <typename Data>
 HashTableTemplate<Data>::HashTableTemplate()
 {
   // Add implementation here
+  _buckets = new HashTableTemplateEntry*[TableSize];
+  for(int i=0;i<TableSize;i++)
+  {
+    _buckets[i] = NULL;
+  }
 }
 
 template <typename Data>
